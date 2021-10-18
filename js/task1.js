@@ -30,7 +30,7 @@ function startColorChange() {
         return
     }
     intervalId = setInterval(() => {
-        // console.log(`start interval ${Date.now()}`);
+        console.log(`start interval ${Date.now()}`);
         colorChange();
         activColorChange = true;
     }, 1000);
