@@ -16,7 +16,7 @@ const ref = {
 const min = 0;
 const max = colors.length-1;
 let intervalId = null;
-let activColorChange = false;
+// let activColorChange = false;
 
 ref.startBtn.addEventListener('click', startColorChange);
 ref.stopBtn.addEventListener('click', stopColorChange);
@@ -26,19 +26,21 @@ const randomIntegerFromInterval = (min, max) => {
 };
 
 function startColorChange() {
-    if (activColorChange) {
+    if (ref.startBtn.disabled) {
         return
     }
     intervalId = setInterval(() => {
         console.log(`start interval ${Date.now()}`);
         colorChange();
-        activColorChange = true;
+        // activColorChange = true;
+        ref.startBtn.disabled = true;
     }, 1000);
 }
 
 function stopColorChange() {
     clearInterval(intervalId);
-    activColorChange = false;
+    // activColorChange = false;
+    ref.startBtn.disabled = false;
 }
 
 function colorChange() {    
