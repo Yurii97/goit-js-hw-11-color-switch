@@ -16,7 +16,7 @@ const ref = {
 const min = 0;
 const max = colors.length-1;
 let intervalId = null;
-// let activColorChange = false;
+let curentColor = null;
 
 ref.startBtn.addEventListener('click', startColorChange);
 ref.stopBtn.addEventListener('click', stopColorChange);
@@ -31,19 +31,24 @@ function startColorChange() {
     }
     intervalId = setInterval(() => {
         console.log(`start interval ${Date.now()}`);
-        colorChange();
-        // activColorChange = true;
+
+        const firstColor = curentColor;
+        colorChange(firstColor);
         ref.startBtn.disabled = true;
     }, 1000);
 }
 
 function stopColorChange() {
-    clearInterval(intervalId);
-    // activColorChange = false;
+    clearInterval(intervalId);    
     ref.startBtn.disabled = false;
 }
 
-function colorChange() {    
+function colorChange(firstColor) {    
     const color = colors[randomIntegerFromInterval(min, max)];
-    ref.bodyRef.style.backgroundColor = color;    
+    if (firstColor !== color) {
+        ref.bodyRef.style.backgroundColor = color;
+        curentColor = color;        
+    } else {        
+        colorChange(firstColor);
+    }
 }
