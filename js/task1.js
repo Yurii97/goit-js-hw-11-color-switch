@@ -31,7 +31,6 @@ function startColorChange() {
     }
     intervalId = setInterval(() => {
         console.log(`start interval ${Date.now()}`);
-
         const firstColor = curentColor;
         colorChange(firstColor);
         ref.startBtn.disabled = true;
@@ -47,8 +46,9 @@ function colorChange(firstColor) {
     const color = colors[randomIntegerFromInterval(min, max)];
     if (firstColor !== color) {
         ref.bodyRef.style.backgroundColor = color;
-        curentColor = color;        
-    } else {        
+        curentColor = color;
+        return
+    }      
         colorChange(firstColor);
-    }
+    
 }
